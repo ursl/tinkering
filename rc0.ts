@@ -1,8 +1,20 @@
+// ----------------------------------------------------------------------
+// -- rc0
+// Initial starting point for remote controlling one microbit from another
+// I don't yet really understand the display on the tx. rx is as expected.
+// ----------------------------------------------------------------------
+
+// ----------------------------------------------------------------------
+// -- make sure something happens when A is pressed
 input.onButtonPressed(Button.A, function () {
     butA += 1
     basic.showNumber(butA)
     basic.clearScreen()
 })
+
+
+// ----------------------------------------------------------------------
+// -- remote microbit
 radio.onReceivedValue(function (name, value) {
     if (name == "buttonA") {
         basic.showNumber(value)
@@ -49,9 +61,13 @@ radio.onReceivedValue(function (name, value) {
         basic.showString("B")
     }
 })
-let butA = 0
+
+
+// ----------------------------------------------------------------------
+// -- main program starts here
 radio.setGroup(56)
-butA = 0
+// -- define globals
+let butA = 0
 let accX = 0
 basic.forever(function () {
     while (true) {
