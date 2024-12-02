@@ -3,17 +3,18 @@
 // -- 2024/12/02
 // ----------------------------------------------------------------------
 
-// -- reset 
+// -- reset
 input.onButtonPressed(Button.A, function () {
     kitronik_i2c_16_servo.servoWrite(kitronik_i2c_16_servo.Servos.Servo16, 40)
     basic.showIcon(IconNames.Yes)
+    basic.pause(1000)
     basic.clearScreen()
 })
-
 // -- both buttons do a reset
 input.onButtonPressed(Button.B, function () {
     kitronik_i2c_16_servo.servoWrite(kitronik_i2c_16_servo.Servos.Servo16, 40)
     basic.showIcon(IconNames.Yes)
+    basic.pause(1000)
     basic.clearScreen()
 })
 
