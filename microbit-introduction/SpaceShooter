@@ -1,0 +1,35 @@
+input.onButtonPressed(Button.A, function () {
+    ship.change(LedSpriteProperty.X, -1)
+})
+input.onButtonPressed(Button.B, function () {
+    ship.change(LedSpriteProperty.X, 1)
+})
+let punkte = 0
+let sprite: game.LedSprite = null
+let ship: game.LedSprite = null
+ship = game.createSprite(2, 4)
+let timeMin = 1000
+let timeMax = 2000
+let dropDelay = 200
+game.setScore(0)
+basic.forever(function () {
+    basic.pause(randint(1000, 1890))
+    sprite = game.createSprite(randint(0, 4), 0)
+    basic.pause(dropDelay)
+    for (let index = 0; index < 4; index++) {
+        sprite.change(LedSpriteProperty.Y, 1)
+        basic.pause(200)
+    }
+    if (sprite.isTouching(ship)) {
+        game.gameOver()
+        basic.showString("Score" + convertToText(punkte))
+    }
+    sprite.delete()
+    punkte += 1
+    game.addScore(1)
+    if (punkte % 5 == 3) {
+        timeMin += 0 - 200
+        timeMax += 0 - 200
+        dropDelay += 0 - 40
+    }
+})
