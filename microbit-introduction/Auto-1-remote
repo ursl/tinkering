@@ -1,0 +1,63 @@
+input.onButtonPressed(Button.A, function () {
+    if (links == 0) {
+        links = 1
+        radio.sendString("linksstart")
+        basic.showLeds(`
+            # . . . .
+            # . . . .
+            # . . . .
+            # . . . .
+            # # # # .
+            `)
+    } else {
+        links = 0
+        radio.sendString("linksstop")
+    }
+})
+input.onButtonPressed(Button.AB, function () {
+    radio.sendString("allesstop")
+    links = 0
+    rechts = 0
+    basic.showLeds(`
+        # . . . #
+        . # . # .
+        . . # . .
+        . # . # .
+        # . . . #
+        `)
+})
+input.onButtonPressed(Button.B, function () {
+    if (rechts == 0) {
+        rechts = 1
+        radio.sendString("rechtsstart")
+        basic.showLeds(`
+            # # # # .
+            # . . # .
+            # # # # .
+            # . # . .
+            # . . # .
+            `)
+    } else {
+        rechts = 0
+        radio.sendString("rechtsstop")
+    }
+})
+let links = 0
+let rechts = 0
+basic.showLeds(`
+    # . . . #
+    . # . # .
+    . . # . .
+    . . # . .
+    . . # . .
+    `)
+radio.setGroup(36)
+rechts = 0
+links = 0
+basic.showLeds(`
+    # . . . #
+    . # . # .
+    . . # . .
+    . . # . .
+    # # # # #
+    `)
